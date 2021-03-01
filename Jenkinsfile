@@ -26,7 +26,7 @@ spec:
     - cat
     tty: true
   - name: helm
-    image: alpine/helm
+    image: gcr.io/manikanta-305806/helm
     command:
     - cat
     tty: true
