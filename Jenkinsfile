@@ -46,7 +46,6 @@ spec:
       steps {
         container('helm') {
           sh """
-          helm ls
           gcloud container clusters get-credentials proc --zone us-central1-c --project manikanta-305806
           kubectl get pods --namespace default
           helm install sampleapp sampleapp/ --namespace default
