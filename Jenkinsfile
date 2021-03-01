@@ -1,12 +1,8 @@
 pipeline {
 
   environment {
-    PROJECT = "my-project-suri-279708"
-    APP_NAME = "sample-app"
-    FE_SVC_NAME = "${APP_NAME}-frontend"
-    CLUSTER = "gke-cicd"
-    CLUSTER_ZONE = "us-central1-c"
-    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:latest"
+    PROJECT = "manikanta-305806"
+    IMAGE_TAG = "gcr.io/${PROJECT}/sample:latest"
     JENKINS_CRED = "${PROJECT}"
   }
 
@@ -34,11 +30,6 @@ spec:
     command:
     - cat
     tty: true
-  - name: helm
-    image: gcr.io/my-project-suri-279708/helm
-    command:
-    - cat
-    tty: true
 """
 }
   }
@@ -56,10 +47,8 @@ spec:
         container('helm') {
           sh """
           helm ls
-          gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project my-project-suri-279708
+          gcloud container clusters get-credentials proc --zone us-central1-c --project manikanta-305806
           kubectl get pods --namespace default
-          helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
-          helm repo update  
           helm install sampleapp sampleapp/ --namespace default
           helm ls
           kubectl get pods --namespace default
